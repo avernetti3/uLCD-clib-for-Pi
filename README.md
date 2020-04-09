@@ -1,2 +1,2 @@
 # uLCD-clib-for-Pi
-uLCD C++ library for Raspberry Pi (Raspian)
+This is a project that port the uLCD C++ library from mbed to Raspberry Pi (Raspian).
