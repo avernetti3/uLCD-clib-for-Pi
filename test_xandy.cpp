@@ -30,9 +30,9 @@ int main(int argc, char *argv[])
    gpioSetMode(LED, PI_OUTPUT); // set LED pin to output
     while(1){
 	gpioWrite  (LED, PI_ON);  // LED on
-	time_sleep(0.25);         // Delay .25 seconds
+	time_sleep(1.0);         // Delay .25 seconds
 	gpioWrite  (LED, PI_OFF); // LED off
-	time_sleep(0.25);         // Delay .25 seconds
+	time_sleep(1.0);         // Delay .25 seconds
    }
    gpioTerminate();
    return 0;
