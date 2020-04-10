@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
    atexit(exit_handler);  // exit handler cleanup 
 
    //IO code starts here
-   char const *devtty = "/dev/tty";
+   char *devtty = (char *)"/dev/tty";
    gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
    gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
    
