@@ -1,11 +1,13 @@
 #include <stdio.h>
+#include <iostream>
 #include <stdlib.h>
 #include <pigpio.h> // include GPIO library
 #include <signal.h> // needed to clean up CTL C abort
 #include <sys/types.h>
 #include <unistd.h>
 
-#define LED 14 //LED pin is GPIO_17
+#define TXD 14 // TXD pin is GPIO_14
+#define RXD 15 // RXD pin is GPIO_15
 
 // Called when CTL C or STOP button hit
 static void err_handler (int sig){
@@ -26,14 +28,27 @@ int main(int argc, char *argv[])
    signal (SIGTERM, err_handler);
    signal (SIGABRT, err_handler);
    atexit(exit_handler);  // exit handler cleanup 
+
    //IO code starts here
-   gpioSetMode(LED, PI_OUTPUT); // set LED pin to output
-    while(1){
-	gpioWrite  (LED, PI_ON);  // LED on
-	time_sleep(1.0);         // Delay .25 seconds
-	gpioWrite  (LED, PI_OFF); // LED off
-	time_sleep(1.0);         // Delay .25 seconds
+   gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
+   gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
+   
+   int uLCDhandle = serOpen("/dev/tty", 9600, 0); // open a serial device at a specified baud rate
+   std::cout<<"serialHandle: "<< uLCDhandle << "\n\r";
+   if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
+       std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
+       return -1;
    }
+   time_sleep(5.0);   
+   if( serClose(uLCDhandle)!= 0 ) {
+       std::cout <<"ERROR: PI_BAD_HANDLE.\n\r";
+       return -1;
+   }
+
+    while(1){
+	time_sleep(5.0);         
+   }
+
    gpioTerminate();
    return 0;
 }
