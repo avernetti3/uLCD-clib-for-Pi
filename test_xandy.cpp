@@ -30,10 +30,11 @@ int main(int argc, char *argv[])
    atexit(exit_handler);  // exit handler cleanup 
 
    //IO code starts here
+   char const *devtty = "/dev/tty";
    gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
    gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
    
-   int uLCDhandle = serOpen("/dev/tty", 9600, 0); // open a serial device at a specified baud rate
+   int uLCDhandle = serOpen(devtty, 9600, 0); // open a serial device at a specified baud rate
    std::cout<<"serialHandle: "<< uLCDhandle << "\n\r";
    if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
        std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
