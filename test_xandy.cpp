@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "./uLCD-clib/uLCD_4DGL.h"
+#include "uLCD_4DGL.h"
 
 #define TXD 14 // TXD pin is GPIO_14
 #define RXD 15 // RXD pin is GPIO_15
