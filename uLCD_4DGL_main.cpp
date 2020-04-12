@@ -353,7 +353,7 @@ int uLCD_4DGL :: readVERSION(char *command, int number)   // read screen info an
     }
     switch (resp) {
         case 2 :                                           // if OK populate data and return 1
-            revision  = response[0]<<8 + response[1];
+            revision  = (response[0]<<8) + response[1];
             resp      = 1;
             break;
         default :
