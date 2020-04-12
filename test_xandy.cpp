@@ -5,7 +5,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include "uLCD_4DGL.h"
+#include "./uLCD-clib/uLCD_4DGL.h"
 
 #define TXD 14 // TXD pin is GPIO_14
 #define RXD 15 // RXD pin is GPIO_15
@@ -24,28 +24,31 @@ static void exit_handler(void) {
 }
 int main(int argc, char *argv[])
 {
-   if (gpioInitialise()<0) return 1; // init I/O library
-   signal (SIGQUIT, err_handler);// CTL C and STOP button
-   signal (SIGINT, err_handler); // GPIO exit & cleanup
-   signal (SIGTERM, err_handler);
-   signal (SIGABRT, err_handler);
-   atexit(exit_handler);  // exit handler cleanup 
+    if (gpioInitialise()<0) return 1; // init I/O library
+    signal (SIGQUIT, err_handler);// CTL C and STOP button
+    signal (SIGINT, err_handler); // GPIO exit & cleanup
+    signal (SIGTERM, err_handler);
+    signal (SIGABRT, err_handler);
+    atexit(exit_handler);  // exit handler cleanup 
 
-   //IO code starts here
-   char *devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
-   gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
-   gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
-   gpioSetMode(RST, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
+    //IO code starts here
+    uLCD_4DGL uLCD(TXD,RXD,RST); // serial tx, serial rx, reset pin;
+    /*
+    char *devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
+    gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
+    gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
+    gpioSetMode(RST, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
    
-   int uLCDhandle = serOpen(devtty, 9600, 0); // open a serial device at a specified baud rate
-   if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
-       std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
-       return -1;
-   }
+    int uLCDhandle = serOpen(devtty, 9600, 0); // open a serial device at a specified baud rate
+    if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
+        std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
+        return -1;
+    }*/
+    uLCD.printf("\nHello uLCD World\n");
 
+    time_sleep(10.0);
 
-   time_sleep(5.0);
-   serClose(uLCDhandle);
-   gpioTerminate();
-   return 0;
+    serClose(uLCDhandle);
+    gpioTerminate();
+    return 0;
 }

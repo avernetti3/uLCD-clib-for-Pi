@@ -44,7 +44,8 @@ uLCD_4DGL :: uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst) :
     _cmd = serOpen(_devtty, 9600, 0); // open a serial device at a specified baud rate
     if((_cmd == PI_NO_HANDLE)||(_cmd == PI_SER_OPEN_FAILED)){
         printf("ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n");
-        return;
+        printf("Press Ctrl+C to exit.\n");
+        while(1){ time_sleep(5); }
     }
 #if DEBUGMODE
     printf("\n\n\n");
