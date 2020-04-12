@@ -46,9 +46,9 @@ int main(int argc, char *argv[])
     */
    
     char *devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
-    gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
-    gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
-    gpioSetMode(RST, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
+    //gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
+    //gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
+    //gpioSetMode(RST, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
    
     int uLCDhandle = serOpen(devtty, 9600, 0); // open a serial device at a specified baud rate
     if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
