@@ -13,8 +13,6 @@
 
 // Called when CTL C or STOP button hit
 static void err_handler (int sig){
-    serClose(uLCDhandle);
-
 	gpioTerminate(); //release GPIO locks & resources
 	signal(SIGINT, SIG_DFL); //exit program
 	kill(getppid(), SIGINT); //kill it off
@@ -22,8 +20,6 @@ static void err_handler (int sig){
 	exit(0);
 }
 static void exit_handler(void) {
-    serClose(uLCDhandle);
-
 	gpioTerminate(); //release GPIO locks & resources on exit
 }
 int main(int argc, char *argv[])
@@ -59,8 +55,8 @@ int main(int argc, char *argv[])
         printf("ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n");
         return -1;
     }
-
-    while(1){
+    int i = 0;
+    while(i < 10){
         while(serDataAvailable(uLCDhandle) != 0){
             //resp = ;
             printf("%i ", serReadByte(uLCDhandle));
@@ -68,6 +64,7 @@ int main(int argc, char *argv[])
         printf("\n");
         serWriteByte(uLCDhandle, 65);
         time_sleep(1);
+        i++;
     }
     serClose(uLCDhandle);
 
