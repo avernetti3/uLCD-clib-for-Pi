@@ -52,7 +52,7 @@ int main(int argc, char *argv[])
    
     int uLCDhandle = serOpen(devtty, 9600, 0); // open a serial device at a specified baud rate
     if((uLCDhandle == PI_NO_HANDLE)||(uLCDhandle == PI_SER_OPEN_FAILED)){
-        std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
+        printf("ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n");
         return -1;
     }
 
