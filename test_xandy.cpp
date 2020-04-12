@@ -58,15 +58,27 @@ int main(int argc, char *argv[])
 
     int cmd = 65;
     int resp = 0;
+    time_sleep(5);
     while(serDataAvailable(uLCDhandle) != 0){
         serReadByte(uLCDhandle);
     }
-    serWriteByte(uLCDhandle, (unsigned) cmd);
+    time_sleep(1);
+    int status = serWriteByte(uLCDhandle, 65);
+    printf("status = %i", status);
+    int status = serWriteByte(uLCDhandle, 66);
+    printf("status = %i", status);
+    int status = serWriteByte(uLCDhandle, 67);
+    printf("status = %i", status);
+    int status = serWriteByte(uLCDhandle, 68);
+    printf("status = %i", status);
+
+    int i = -1;
     do {
         time_sleep(0.005);
         resp = serDataAvailable(uLCDhandle);
+        i++;
     } while(resp == 0);
-    printf("number avail: %i\n", resp);
+    printf("number avail: %i and i = %i \n", resp, i);
     
     while(serDataAvailable(uLCDhandle) != 0){
         resp = serReadByte(uLCDhandle);
