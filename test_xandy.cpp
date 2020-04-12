@@ -63,6 +63,7 @@ int main(int argc, char *argv[])
         time_sleep(0.005);
         resp = serDataAvailable(uLCDhandle);
     } while(resp == 0);
+    printf("number avail: %i\n", resp);
     resp = serReadByte(uLCDhandle);
     printf("%i\n", resp);
     serClose(uLCDhandle);
