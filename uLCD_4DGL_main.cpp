@@ -70,6 +70,7 @@ uLCD_4DGL :: uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst) :
 
 //******************************************************************************************************
 uLCD_4DGL :: ~uLCD_4DGL(){
+    printf("Destructing uLCD\n");
     serClose(_cmd);
 }
 

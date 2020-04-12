@@ -33,6 +33,7 @@ int main(int argc, char *argv[])
 
     //IO code starts here
     uLCD_4DGL uLCD(TXD,RXD,RST); // serial tx, serial rx, reset pin;
+    printf("uLCD constructed\n");
     /*
     char *devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
     gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
@@ -45,10 +46,17 @@ int main(int argc, char *argv[])
         return -1;
     }*/
     //uLCD.printf("\nHello uLCD World\n");
-    uLCD.background_color(BLACK);
-    uLCD.filled_circle(60, 60, 20, RED);
-
+    time_sleep(5.0);
+    uLCD.background_color(RED);
+    printf("color backgroud red\n");
+    time_sleep(5.0);
+    uLCD.filled_circle(60, 60, 20, WHITE);
+    printf("circle\n");
     time_sleep(10.0);
+    uLCD.~uLCD_4DGL();
+    printf("uLCD destructed\n");
+    time_sleep(3.0);
     gpioTerminate();
+    printf("gpio terminated\n");
     return 0;
 }
