@@ -13,6 +13,8 @@
 
 // Called when CTL C or STOP button hit
 static void err_handler (int sig){
+    serClose(uLCDhandle);
+
 	gpioTerminate(); //release GPIO locks & resources
 	signal(SIGINT, SIG_DFL); //exit program
 	kill(getppid(), SIGINT); //kill it off
@@ -20,6 +22,8 @@ static void err_handler (int sig){
 	exit(0);
 }
 static void exit_handler(void) {
+    serClose(uLCDhandle);
+
 	gpioTerminate(); //release GPIO locks & resources on exit
 }
 int main(int argc, char *argv[])
@@ -56,34 +60,14 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    int cmd = 65;
-    int resp = 0;
-    int status = 0;
-    time_sleep(5);
-    while(serDataAvailable(uLCDhandle) != 0){
-        serReadByte(uLCDhandle);
-    }
-    time_sleep(1);
-    status = serWriteByte(uLCDhandle, 65);
-    printf("status = %i", status);
-    status = serWriteByte(uLCDhandle, 66);
-    printf("status = %i", status);
-    status = serWriteByte(uLCDhandle, 67);
-    printf("status = %i", status);
-    status = serWriteByte(uLCDhandle, 68);
-    printf("status = %i", status);
-
-    int i = -1;
-    do {
-        time_sleep(0.005);
-        resp = serDataAvailable(uLCDhandle);
-        i++;
-    } while(resp == 0);
-    printf("number avail: %i and i = %i \n", resp, i);
-    
-    while(serDataAvailable(uLCDhandle) != 0){
-        resp = serReadByte(uLCDhandle);
-        printf("%i\n", resp);
+    while(1){
+        while(serDataAvailable(uLCDhandle) != 0){
+            //resp = ;
+            printf("%i ", serReadByte(uLCDhandle));
+        }
+        printf("\n");
+        serWriteByte(uLCDhandle, 65);
+        time_sleep(1);
     }
     serClose(uLCDhandle);
 
