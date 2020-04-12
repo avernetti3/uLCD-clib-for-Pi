@@ -59,9 +59,12 @@ int main(int argc, char *argv[])
     int cmd = 65;
     int resp = 0;
     serWriteByte(uLCDhandle, (unsigned) cmd);
-    while(serDataAvailable(uLCDhandle) == 0) time_sleep(0/1000);
+    do {
+        time_sleep(0.005);
+        resp = serDataAvailable(uLCDhandle);
+    } while(resp == 0);
     resp = serReadByte(uLCDhandle);
-    printf("%i", resp);
+    printf("%i\n", resp);
     serClose(uLCDhandle);
 
     return 0;
