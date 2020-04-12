@@ -25,7 +25,6 @@
 #include <sys/types.h>
 #include <unistd.h>
 
-#include <cstring>
 #include "uLCD_4DGL.h"
 
 #define ARRAY_SIZE(X) sizeof(X)/sizeof(X[0])
