@@ -64,8 +64,11 @@ int main(int argc, char *argv[])
         resp = serDataAvailable(uLCDhandle);
     } while(resp == 0);
     printf("number avail: %i\n", resp);
-    resp = serReadByte(uLCDhandle);
-    printf("%i\n", resp);
+    
+    while(serDataAvailable(uLCDhandle) != 0){
+        resp = serReadByte(uLCDhandle);
+        printf("%i\n", resp);
+    }
     serClose(uLCDhandle);
 
     return 0;
