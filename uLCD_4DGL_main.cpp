@@ -24,6 +24,8 @@
 #include <signal.h> // needed to clean up CTL C abort
 #include <sys/types.h>
 #include <unistd.h>
+
+#include <cstring>
 #include "uLCD_4DGL.h"
 
 #define ARRAY_SIZE(X) sizeof(X)/sizeof(X[0])
