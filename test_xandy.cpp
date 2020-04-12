@@ -58,6 +58,9 @@ int main(int argc, char *argv[])
 
     int cmd = 65;
     int resp = 0;
+    while(serDataAvailable(uLCDhandle) != 0){
+        serReadByte(uLCDhandle);
+    }
     serWriteByte(uLCDhandle, (unsigned) cmd);
     do {
         time_sleep(0.005);
