@@ -21,6 +21,7 @@ static void err_handler (int sig){
 }
 static void exit_handler(void) {
 	gpioTerminate(); //release GPIO locks & resources on exit
+    printf("gpio terminated\n");
 }
 int main(int argc, char *argv[])
 {
@@ -53,10 +54,9 @@ int main(int argc, char *argv[])
     uLCD.filled_circle(60, 60, 20, WHITE);
     printf("circle\n");
     time_sleep(10.0);
-    uLCD.~uLCD_4DGL();
-    printf("uLCD destructed\n");
-    time_sleep(3.0);
-    gpioTerminate();
-    printf("gpio terminated\n");
+    //uLCD.~uLCD_4DGL();
+    //time_sleep(3.0);
+    //gpioTerminate();
+    
     return 0;
 }
