@@ -319,7 +319,7 @@ public :
 
 protected :
 
-    unsigned _cmd;
+    int _cmd;
     unsigned _rst;
     char * _devtty;
     //used by printf

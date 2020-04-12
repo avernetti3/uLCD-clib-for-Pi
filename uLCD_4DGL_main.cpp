@@ -347,7 +347,7 @@ int uLCD_4DGL :: readVERSION(char *command, int number)   // read screen info an
 
     while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000); //wait_ms(TEMPO);               // wait for screen answer
 
-    while ((serDataAvailable(_cmd) != 0) && resp < ARRAY_SIZE(response)) {
+    while ((serDataAvailable(_cmd) != 0) && resp < (int) (ARRAY_SIZE(response))) {
         temp = serReadByte(_cmd);
         response[resp++] = (char)temp;
     }
@@ -465,7 +465,7 @@ int uLCD_4DGL :: getSTATUS(char *command, int number)   // read screen info and 
 
     while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000);    // wait for screen answer
 
-    while ((serDataAvailable(_cmd) != 0) && resp < ARRAY_SIZE(response)) {
+    while ((serDataAvailable(_cmd) != 0) && resp < (int) (ARRAY_SIZE(response))) {
         temp = serReadByte(_cmd);
         response[resp++] = (char)temp;
     }
