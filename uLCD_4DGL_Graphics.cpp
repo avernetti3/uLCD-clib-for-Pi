@@ -242,7 +242,7 @@ void uLCD_4DGL :: BLIT(int x, int y, int w, int h, int *colors)     // draw a bl
         writeBYTEfast(((green6 << 5) + (blue5 >> 0)) & 0xFF);  // second part of 16 bits color
     }
     int resp=0;
-    while (serDataAvailable(_cmd) == 0) wait_ms(TEMPO);              // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000);              // wait for screen answer
     if (serDataAvailable(_cmd) != 0) resp = serReadByte(_cmd);           // read response if any
     switch (resp) {
         case ACK :                                     // if OK return   1
