@@ -204,12 +204,12 @@ Example:
 * @endcode
 */
 
-class uLCD_4DGL : public Stream
+class uLCD_4DGL //: public Stream
 {
 
 public :
 
-    uLCD_4DGL(PinName tx, PinName rx, PinName rst);
+    uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst);
     ~uLCD_4DGL();
 
 // General Commands *******************************************************************************
