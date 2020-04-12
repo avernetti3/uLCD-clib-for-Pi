@@ -210,6 +210,7 @@ class uLCD_4DGL : public Stream
 public :
 
     uLCD_4DGL(PinName tx, PinName rx, PinName rst);
+    ~uLCD_4DGL();
 
 // General Commands *******************************************************************************
 

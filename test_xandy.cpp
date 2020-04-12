@@ -44,11 +44,11 @@ int main(int argc, char *argv[])
         std::cout <<"ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n\r";
         return -1;
     }*/
-    uLCD.printf("\nHello uLCD World\n");
+    //uLCD.printf("\nHello uLCD World\n");
+    uLCD.background_color(BLACK);
+    uLCD.filled_circle(60, 60, 20, RED);
 
     time_sleep(10.0);
-
-    serClose(uLCDhandle);
     gpioTerminate();
     return 0;
 }

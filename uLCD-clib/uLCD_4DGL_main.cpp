@@ -68,6 +68,11 @@ uLCD_4DGL :: uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst) :
 }
 
 //******************************************************************************************************
+uLCD_4DGL :: ~uLCD_4DGL(){
+    serClose(_cmd);
+}
+
+//******************************************************************************************************
 void uLCD_4DGL :: writeBYTE(char c)   // send a BYTE command to screen
 {
 
