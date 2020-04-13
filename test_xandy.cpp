@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     time_sleep(5.0);
     */
    
-    char *devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
+    char *devtty = (char *)"/dev/AMA0"; // Pi3: ttyS0; older Pis: ttyAMA0
     //gpioSetMode(TXD, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
     //gpioSetMode(RXD, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
     //gpioSetMode(RST, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
     for (int i = 0; i < 26; i++) {   
         serWriteByte(uLCDhandle, (int)('A'+i));
         while(serDataAvailable(uLCDhandle) == 0);
-        printf("%i", serReadByte(uLCDhandle));
+        printf("%c", serReadByte(uLCDhandle));
     }
     printf("\n");
     serClose(uLCDhandle);
