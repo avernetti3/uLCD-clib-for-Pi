@@ -13,7 +13,7 @@
 
 // Called when CTL C or STOP button hit
 static void err_handler (int sig){
-    printf("err_handler\n");
+    //printf("err_handler\n");
 	gpioTerminate(); //release GPIO locks & resources
 	signal(SIGINT, SIG_DFL); //exit program
 	kill(getppid(), SIGINT); //kill it off
@@ -21,7 +21,7 @@ static void err_handler (int sig){
 	exit(0);
 }
 static void exit_handler(void) {
-    printf("exit_handler\n");
+    //printf("exit_handler\n");
 	gpioTerminate(); //release GPIO locks & resources on exit
 }
 int main(int argc, char *argv[])
@@ -39,11 +39,14 @@ int main(int argc, char *argv[])
     printf("uLCD constructed\n");
     //uLCD.printf("\nHello uLCD World\n");
     time_sleep(5.0);
-    uLCD.background_color(GREEN);
-    printf("color backgroud red\n");
+    uLCD.background_color(GREEN); // TODO: background_color not working !!!
+    printf("color backgroud\n");
     time_sleep(5.0);
     uLCD.filled_circle(60, 60, 20, RED);
-    printf("circle\n");
+    time_sleep(5.0);
+    uLCD.background_color(GREEN); // TODO: background_color not working !!!
+    uLCD.putc('A');
+    uLCD.putc('B');
     time_sleep(5.0);
 
     return 0;

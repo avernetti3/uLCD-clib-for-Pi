@@ -68,7 +68,7 @@ uLCD_4DGL :: uLCD_4DGL(unsigned rst) :
 
 //******************************************************************************************************
 uLCD_4DGL :: ~uLCD_4DGL(){
-    printf("~uLCD_4DGL()\n");
+    //printf("~uLCD_4DGL()\n");
     serClose(_cmd);
 }
 
