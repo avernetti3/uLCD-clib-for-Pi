@@ -18,7 +18,7 @@ In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/
 By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respectively, which are pins 8 and 10 on the GPIO header.
 
 ## How to use UART output on GPIO
-We need to enable Serial Port and disable Serial Console. You can do this either via GUI or command line.
+We need to enable Serial Port and disable Serial Console. You can do this via either GUI or command line.
 
 GUI: Go to Preferences > Raspberry Pi Configuration > Interfaces > Enable Serial Port and Disable Serial Console.
 
@@ -34,7 +34,7 @@ Troubleshooting: If you do not see the expected result and either see continuous
 
 `char *devtty = (char *)"/dev/serial0";`
 
-Change serial0 to `serial1`, or `ttyS0`, or `ttyAMA0`.
+Change `serial0` to `serial1`, or `ttyS0`, or `ttyAMA0`.
 
 ## PIGPIO Serial Interface 
 (http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
