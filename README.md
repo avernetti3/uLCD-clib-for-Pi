@@ -8,13 +8,18 @@ Created by:
 Created for:
 Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 
-NOTE FOR RASPBERRY PI 3: The Raspberry pi 3 has changed things around a bit: ttyAMA0 now refers to the serial port that is connected to the bluetooth. The old serial port is now called ttyS0. So if you have an RPI3, everywhere you see "ttyAMA0" below, you should read "ttyS0".
+## The Raspberry Pi UARTs (https://www.raspberrypi.org/documentation/configuration/uart.md)
 
+By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART.
 
-_rst = 1;           ->      gpioWrite(_rst, 1); 
-_cmd.putc(c);       ->      serWriteByte(_cmd, (unsigned) c);
-_cmd.getc();        ->      int = serReadByte(_cmd);
-wait_ms(5);         ->      time_sleep(0.005);
-wait(3);            ->      time_sleep(3);
-wait_us(500);       ->      time_sleep(0.0005);
-_cmd.readable()     ->      serDataAvailable(_cmd) != 0
+In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/ttyAMA0 refers to the PL011. The primary UART is the one assigned to the Linux console, which depends on the Raspberry Pi model as described above. There are also symlinks: /dev/serial0, which always refers to the primary UART (if enabled), and /dev/serial1, which similarly always refers to the secondary UART (if enabled).
+
+## PIGPIO Serial Interface (http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
+mbed uLCD_4DGL library      ->      PIGPIO c library
+_rst = 1;                   ->      gpioWrite(_rst, 1); 
+_cmd.putc(c);               ->      serWriteByte(_cmd, (unsigned) c);
+_cmd.getc();                ->      int = serReadByte(_cmd);
+wait_ms(5);                 ->      time_sleep(0.005);
+wait(3);                    ->      time_sleep(3);
+wait_us(500);               ->      time_sleep(0.0005);
+_cmd.readable()             ->      serDataAvailable(_cmd) != 0
