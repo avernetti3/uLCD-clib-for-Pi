@@ -23,7 +23,7 @@ Command line: sudo raspi-config > 5 Interfacing Options > P6 Serial > No (login 
 
 To test UART working correctly, connect TX (GPIO_14) to RX (GPIO_15). I have written a short c program called UARTtest.cpp for testing. 
 Compile in command line: g++ -Wall -pthread -o "UARTtest" "UARTtest.cpp" -lpigpio -lrt
-Run in command line: ./UARTtest
+Run in command line: sudo ./UARTtest
 You should see the letters A to Z in the command line. 
 Troubleshooting: If you do not see the expected result and either see continuous running program with errors, or see program freezing without finishing, first quit the program by hitting Ctrl + C, then go into UARTtest.cpp and change the following line:
 char *devtty = (char *)"/dev/serial0"; 
