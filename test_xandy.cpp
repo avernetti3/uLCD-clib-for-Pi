@@ -62,7 +62,8 @@ int main(int argc, char *argv[])
     }
     //print A to Z
     for (int i = 0; i < 26; i++) {   
-        serWriteByte(uLCDhandle, 65);
+        serWriteByte(uLCDhandle, (int)('A'+i));
+        while(serDataAvailable(uLCDhandle) == 0);
         printf("%i", serReadByte(uLCDhandle));
     }
     printf("\n");
