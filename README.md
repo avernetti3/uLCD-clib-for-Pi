@@ -8,7 +8,8 @@ Created by:
 Created for:
 Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 
-## The Raspberry Pi UARTs (https://www.raspberrypi.org/documentation/configuration/uart.md)
+## The Raspberry Pi UARTs 
+(https://www.raspberrypi.org/documentation/configuration/uart.md)
 
 By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART.
 
@@ -18,23 +19,32 @@ By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respec
 
 ## How to use UART output on GPIO
 We need to enable Serial Port and disable Serial Console. You can do this either via GUI or command line.
+
 GUI: Go to Preferences > Raspberry Pi Configuration > Interfaces > Enable Serial Port and Disable Serial Console.
+
 Command line: sudo raspi-config > 5 Interfacing Options > P6 Serial > No (login shell) > Yes (serial port hardware)
 
-To test UART working correctly, connect TX (GPIO_14) to RX (GPIO_15). I have written a short c program called UARTtest.cpp for testing. 
-Compile in command line: g++ -Wall -pthread -o "UARTtest" "UARTtest.cpp" -lpigpio -lrt
-Run in command line: sudo ./UARTtest
-You should see the letters A to Z in the command line. 
-Troubleshooting: If you do not see the expected result and either see continuous running program with errors, or see program freezing without finishing, first quit the program by hitting Ctrl + C, then go into UARTtest.cpp and change the following line:
-char *devtty = (char *)"/dev/serial0"; 
-Change serial0 to serial1, or ttyS0, or ttyAMA0.
+To test UART working correctly, connect TX (GPIO_14) to RX (GPIO_15). I have written a short c program called UARTtest.cpp for testing. You should see the letters A to Z in the command line.
 
-## PIGPIO Serial Interface (http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
-mbed uLCD_4DGL library      ->      PIGPIO c library
-_rst = 1;                   ->      gpioWrite(_rst, 1); 
-_cmd.putc(c);               ->      serWriteByte(_cmd, (unsigned) c);
-_cmd.getc();                ->      int = serReadByte(_cmd);
-wait_ms(5);                 ->      time_sleep(0.005);
-wait(3);                    ->      time_sleep(3);
-wait_us(500);               ->      time_sleep(0.0005);
-_cmd.readable()             ->      serDataAvailable(_cmd) != 0
+Compile in command line: `g++ -Wall -pthread -o "UARTtest" "UARTtest.cpp" -lpigpio -lrt`
+
+Run in command line: `sudo ./UARTtest`
+
+Troubleshooting: If you do not see the expected result and either see continuous running program with errors, or see program freezing without finishing, first quit the program by hitting Ctrl + C, then go into UARTtest.cpp and change the following line:
+
+`char *devtty = (char *)"/dev/serial0";`
+
+Change serial0 to `serial1`, or `ttyS0`, or `ttyAMA0`.
+
+## PIGPIO Serial Interface 
+(http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
+
+mbed uLCD_4DGL library      |      PIGPIO c library
+---                         |      ---
+_rst = 1;                   |      gpioWrite(_rst, 1); 
+_cmd.putc(c);               |      serWriteByte(_cmd, (unsigned) c);
+_cmd.getc();                |      int = serReadByte(_cmd);
+wait_ms(5);                 |      time_sleep(0.005);
+wait(3);                    |      time_sleep(3);
+wait_us(500);               |      time_sleep(0.0005);
+_cmd.readable()             |      serDataAvailable(_cmd) != 0
