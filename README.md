@@ -14,6 +14,12 @@ By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspbe
 
 In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/ttyAMA0 refers to the PL011. The primary UART is the one assigned to the Linux console, which depends on the Raspberry Pi model as described above. There are also symlinks: /dev/serial0, which always refers to the primary UART (if enabled), and /dev/serial1, which similarly always refers to the secondary UART (if enabled).
 
+By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respectively, which are pins 8 and 10 on the GPIO header.
+
+Various UART Device Tree Overlay definitions can be found in the kernel github tree. The two most useful overlays are disable-bt and miniuart-bt.
+
+disable-bt disables the Bluetooth device and restores UART0/ttyAMA0 to GPIOs 14 and 15. It is also necessary to disable the system service that initialises the modem so it doesn't use the UART: sudo systemctl disable hciuart.
+
 ## PIGPIO Serial Interface (http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
 mbed uLCD_4DGL library      ->      PIGPIO c library
 _rst = 1;                   ->      gpioWrite(_rst, 1); 
