@@ -39,10 +39,10 @@ int main(int argc, char *argv[])
     printf("uLCD constructed\n");
     //uLCD.printf("\nHello uLCD World\n");
     time_sleep(5.0);
-    uLCD.background_color(RED);
+    uLCD.background_color(GREEN);
     printf("color backgroud red\n");
     time_sleep(5.0);
-    uLCD.filled_circle(60, 60, 20, WHITE);
+    uLCD.filled_circle(60, 60, 20, RED);
     printf("circle\n");
     time_sleep(5.0);
 
