@@ -16,9 +16,18 @@ In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/
 
 By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respectively, which are pins 8 and 10 on the GPIO header.
 
-Various UART Device Tree Overlay definitions can be found in the kernel github tree. The two most useful overlays are disable-bt and miniuart-bt.
+## How to use UART output on GPIO
+We need to enable Serial Port and disable Serial Console. You can do this either via GUI or command line.
+GUI: Go to Preferences > Raspberry Pi Configuration > Interfaces > Enable Serial Port and Disable Serial Console.
+Command line: sudo raspi-config > 5 Interfacing Options > P6 Serial > No (login shell) > Yes (serial port hardware)
 
-disable-bt disables the Bluetooth device and restores UART0/ttyAMA0 to GPIOs 14 and 15. It is also necessary to disable the system service that initialises the modem so it doesn't use the UART: sudo systemctl disable hciuart.
+To test UART working correctly, connect TX (GPIO_14) to RX (GPIO_15). I have written a short c program called UARTtest.cpp for testing. 
+Compile in command line: g++ -Wall -pthread -o "UARTtest" "UARTtest.cpp" -lpigpio -lrt
+Run in command line: ./UARTtest
+You should see the letters A to Z in the command line. 
+Troubleshooting: If you do not see the expected result and either see continuous running program with errors, or see program freezing without finishing, first quit the program by hitting Ctrl + C, then go into UARTtest.cpp and change the following line:
+char *devtty = (char *)"/dev/serial0"; 
+Change serial0 to serial1, or ttyS0, or ttyAMA0.
 
 ## PIGPIO Serial Interface (http://abyz.me.uk/rpi/pigpio/cif.html#serOpen)
 mbed uLCD_4DGL library      ->      PIGPIO c library
