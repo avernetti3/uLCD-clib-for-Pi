@@ -55,17 +55,17 @@ int main(int argc, char *argv[])
         printf("ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n");
         return -1;
     }
-    int i = 0;
-    while(i < 10){
-        while(serDataAvailable(uLCDhandle) != 0){
-            //resp = ;
-            printf("%i ", serReadByte(uLCDhandle));
-        }
-        printf("\n");
-        serWriteByte(uLCDhandle, 65);
-        time_sleep(1);
-        i++;
+
+    // clearing out initial unwanted data
+    while(serDataAvailable(uLCDhandle) != 0){
+        serReadByte(uLCDhandle);
     }
+    //print A to Z
+    for (int i = 0; i < 26; i++) {   
+        serWriteByte(uLCDhandle, ((int)'A' + i));
+        printf("%c", (char)serReadByte(uLCDhandle));
+    }
+    printf("\n");
     serClose(uLCDhandle);
 
     return 0;
