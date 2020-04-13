@@ -33,16 +33,14 @@
 
 
 //******************************************************************************************************
-uLCD_4DGL :: uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst) :
+uLCD_4DGL :: uLCD_4DGL(unsigned rst) :
     _rst(rst)
 {
     // Constructor
-    _devtty = (char *)"/dev/ttyS0"; // Pi3: ttyS0; older Pis: ttyAMA0
-    gpioSetMode(tx, PI_ALT0); // set TXD pin to alternative mode 0 (TXD0)
-    gpioSetMode(rx, PI_ALT0); // set LED pin to alternative mode 0 (RXD0)
-    gpioSetMode(_rst, PI_OUTPUT); // set LED pin to alternative mode 0 (RXD0)
+    _devtty = (char *)"/dev/serial0"; // Pi3: ttyS0; older Pis: ttyAMA0
     
     _cmd = serOpen(_devtty, 9600, 0); // open a serial device at a specified baud rate
+    
     if((_cmd == PI_NO_HANDLE)||(_cmd == PI_SER_OPEN_FAILED)){
         printf("ERROR: PI_NO_HANDLE or PI_SER_OPEN_FAILED.\n");
         printf("Press Ctrl+C to exit.\n");
@@ -70,7 +68,7 @@ uLCD_4DGL :: uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst) :
 
 //******************************************************************************************************
 uLCD_4DGL :: ~uLCD_4DGL(){
-    printf("Destructing uLCD\n");
+    printf("~uLCD_4DGL()\n");
     serClose(_cmd);
 }
 

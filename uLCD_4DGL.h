@@ -209,7 +209,7 @@ class uLCD_4DGL //: public Stream
 
 public :
 
-    uLCD_4DGL(unsigned tx, unsigned rx, unsigned rst);
+    uLCD_4DGL(unsigned rst);
     ~uLCD_4DGL();
 
 // General Commands *******************************************************************************
