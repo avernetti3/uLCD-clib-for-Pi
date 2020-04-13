@@ -48,3 +48,9 @@ wait_ms(5);                 |      time_sleep(0.005);
 wait(3);                    |      time_sleep(3);
 wait_us(500);               |      time_sleep(0.0005);
 _cmd.readable()             |      serDataAvailable(_cmd) != 0
+
+## TODO: functions that have not been tested / have issues
+`background_color()`: not working. Haven't figured it out yet.
+
+`printf()`: this uses `getc()`, which works. but I don't know how to make `printf()` work.
+
