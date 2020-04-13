@@ -38,13 +38,9 @@ int main(int argc, char *argv[])
     uLCD_4DGL uLCD(RST); // serial tx, serial rx, reset pin;
     printf("uLCD constructed\n");
     //uLCD.printf("\nHello uLCD World\n");
-    time_sleep(5.0);
     uLCD.background_color(GREEN); // TODO: background_color not working !!!
     printf("color backgroud\n");
-    time_sleep(5.0);
     uLCD.filled_circle(60, 60, 20, RED);
-    time_sleep(5.0);
-    uLCD.background_color(GREEN); // TODO: background_color not working !!!
     uLCD.putc('A');
     uLCD.putc('B');
     time_sleep(5.0);
