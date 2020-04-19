@@ -54,3 +54,72 @@ _cmd.readable()             |      serDataAvailable(_cmd) != 0
 
 `printf()`: this uses `getc()`, which works. but I don't know how to make `printf()` work.
 
+## Working Functions
+`getc()`
+
+```c++
+class uLCD_4DGL // TODO: public Stream
+{
+public :
+    uLCD_4DGL(unsigned rst);
+    ~uLCD_4DGL();
+    void cls();
+    void reset();
+    TODO : void baudrate(int speed);
+    TODO : void background_color(int color);
+    TODO : void textbackground_color(int color);
+    TODO : void display_control(char mode);
+    TODO : void display_power(char mode);
+    TODO : void set_volume(char value);
+    // Graphics Commands
+    TODO : void circle(int x , int y , int radius, int color);
+    TODO : void filled_circle(int x , int y , int radius, int color);
+    TODO : void triangle(int, int, int, int, int, int, int);
+    TODO : void line(int, int, int, int, int);
+    TODO : void rectangle(int, int, int, int, int);
+    TODO : void filled_rectangle(int, int, int, int, int);
+    TODO : void pixel(int, int, int);
+    TODO : int  read_pixel(int, int);
+    TODO : void pen_size(char);
+    TODO : void BLIT(int x, int y, int w, int h, int *colors);
+    // Text Commands
+    TODO : void set_font(char);
+    TODO : void set_font_size(char width, char height);  
+    TODO : void text_mode(char);
+    TODO : void text_bold(char);
+    TODO : void text_italic(char);
+    TODO : void text_inverse(char);
+    TODO : void text_underline(char);
+    TODO : void text_width(char);
+    TODO : void text_height(char);
+    TODO : void text_char(char, char, char, int);
+    TODO : void text_string(char *, char, char, char, int);
+    TODO : void locate(char, char);
+    TODO : void color(int);
+    TODO : void putc(char);
+    TODO : void puts(char *);
+    //Media Commands
+    TODO : int media_init();
+    TODO : void set_byte_address(int, int);
+    TODO : void set_sector_address(int, int);
+    TODO : char read_byte();
+    TODO : int  read_word();
+    TODO : void write_byte(int);
+    TODO : void write_word(int);
+    TODO : void flush_media();
+    TODO : void display_image(int, int);
+    TODO : void display_video(int, int);
+    TODO : void display_frame(int, int, int);
+protected :
+    //used by printf
+    virtual int _putc(int c);
+    void freeBUFFER  (void);
+    void writeBYTE   (char);
+    void writeBYTEfast   (char);
+    int  writeCOMMAND(char *, int);
+    TODO : int  writeCOMMANDnull(char *, int);
+    TODO : int  readVERSION (char *, int);
+    TODO : int  getSTATUS   (char *, int);
+    TODO : int  version     (void);
+};
+```
