@@ -256,7 +256,7 @@ void uLCD_4DGL :: BLIT(int x, int y, int w, int h, int *colors)     // draw a bl
             break;
     }
 #if DEBUGMODE
-    pc.printf("   Answer received : %d\n",resp);
+    printf("   Answer received : %d\n",resp);
 #endif
 
 }

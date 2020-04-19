@@ -50,13 +50,15 @@ wait_us(500);               |      time_sleep(0.0005);
 _cmd.readable()             |      serDataAvailable(_cmd) != 0
 
 ## TODO: functions that have not been tested / have issues
-`background_color()`: not working. Haven't figured it out yet.
+`printf()`: this uses `getc()`, which works. but I don't know how to make `printf()` work. Class `uLCD_4DGL` inherits from `public Stream` class. I commented it out because of some errors. Need to uncomment it to use `printf()`.
 
-`printf()`: this uses `getc()`, which works. but I don't know how to make `printf()` work.
+`set_font()`, `set_font_size()` and `text_string()`: FONT_7X8 is the only built-in font. Hence the first two do not seem to work. `text_string()` works except the `font` argument.
+
+`read_pixel()`: does not return the right value. always respond with `0xa9a9`.
+
+`pen_size()`: this function seems to hang the program entirely.
 
 ## Working Functions
-`getc()`
-
 ```c++
 class uLCD_4DGL // TODO: public Stream
 {
@@ -66,38 +68,38 @@ public :
     void cls();
     void reset();
     TODO : void baudrate(int speed);
-    TODO : void background_color(int color);
-    TODO : void textbackground_color(int color);
+    void background_color(int color); // need to cls() to take effect
+    void textbackground_color(int color);
     TODO : void display_control(char mode);
     TODO : void display_power(char mode);
     TODO : void set_volume(char value);
     // Graphics Commands
-    TODO : void circle(int x , int y , int radius, int color);
-    TODO : void filled_circle(int x , int y , int radius, int color);
-    TODO : void triangle(int, int, int, int, int, int, int);
-    TODO : void line(int, int, int, int, int);
-    TODO : void rectangle(int, int, int, int, int);
-    TODO : void filled_rectangle(int, int, int, int, int);
-    TODO : void pixel(int, int, int);
+    void circle(int x , int y , int radius, int color);
+    void filled_circle(int x , int y , int radius, int color);
+    void triangle(int, int, int, int, int, int, int);
+    void line(int, int, int, int, int);
+    void rectangle(int, int, int, int, int);
+    void filled_rectangle(int, int, int, int, int);
+    void pixel(int, int, int);
     TODO : int  read_pixel(int, int);
     TODO : void pen_size(char);
     TODO : void BLIT(int x, int y, int w, int h, int *colors);
     // Text Commands
     TODO : void set_font(char);
     TODO : void set_font_size(char width, char height);  
-    TODO : void text_mode(char);
-    TODO : void text_bold(char);
-    TODO : void text_italic(char);
-    TODO : void text_inverse(char);
-    TODO : void text_underline(char);
-    TODO : void text_width(char);
-    TODO : void text_height(char);
-    TODO : void text_char(char, char, char, int);
+    void text_mode(char);
+    void text_bold(char);
+    void text_italic(char);
+    void text_inverse(char);
+    void text_underline(char);
+    void text_width(char);
+    void text_height(char);
+    void text_char(char, char, char, int);
     TODO : void text_string(char *, char, char, char, int);
-    TODO : void locate(char, char);
-    TODO : void color(int);
-    TODO : void putc(char);
-    TODO : void puts(char *);
+    void locate(char, char);
+    void color(int);
+    void putc(char);
+    void puts(char *);
     //Media Commands
     TODO : int media_init();
     TODO : void set_byte_address(int, int);
@@ -117,7 +119,7 @@ protected :
     void writeBYTE   (char);
     void writeBYTEfast   (char);
     int  writeCOMMAND(char *, int);
-    TODO : int  writeCOMMANDnull(char *, int);
+    int  writeCOMMANDnull(char *, int);
     TODO : int  readVERSION (char *, int);
     TODO : int  getSTATUS   (char *, int);
     TODO : int  version     (void);
