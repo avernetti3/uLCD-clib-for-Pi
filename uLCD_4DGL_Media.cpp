@@ -29,21 +29,25 @@
 //Media Commands
 
 //******************************************************************************************************
+// UPDATED
 int uLCD_4DGL :: media_init()
 {
     int resp = 0;
     char command[1] = "";
     command[0] = MINIT;
     writeCOMMAND(command, 1);
-    while (!_cmd.readable()) wait_ms(TEMPO);              // wait for screen answer
-    if (_cmd.readable()) {
-        resp = _cmd.getc();           // read response
-        resp = resp << 8 + _cmd.getc();
+    // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);
+    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+        // read response
+        resp = serReadByte(_cmd); //resp = _cmd.getc();           
+        resp = resp << 8 + serReadByte(_cmd); //resp = resp << 8 + _cmd.getc();
     }
     return resp;
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: set_byte_address(int hi, int lo)
 {
     char command[5]= "";
@@ -58,6 +62,7 @@ void uLCD_4DGL :: set_byte_address(int hi, int lo)
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: set_sector_address(int hi, int lo)
 {
 
@@ -73,36 +78,43 @@ void uLCD_4DGL :: set_sector_address(int hi, int lo)
 }
 
 //******************************************************************************************************
+// UPDATED
 char uLCD_4DGL :: read_byte()
 {
     char resp = 0;
     char command[1] = "";
     command[0] = READBYTE;
     writeCOMMAND(command, 1);
-    while (!_cmd.readable()) wait_ms(TEMPO);              // wait for screen answer
-    if (_cmd.readable()) {
-        resp = _cmd.getc();           // read response
-        resp = _cmd.getc();
+    // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);              
+    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+        // read response
+        resp = serReadByte(_cmd); //resp = _cmd.getc();           
+        resp = serReadByte(_cmd); //resp = _cmd.getc();
     }
     return resp;
 }
 
 //******************************************************************************************************
+// UPDATED
 int  uLCD_4DGL :: read_word()
 {
     int resp=0;
     char command[1] = "";
     command[0] = READWORD;
     writeCOMMAND(command, 1);
-    while (!_cmd.readable()) wait_ms(TEMPO);              // wait for screen answer
-    if (_cmd.readable()) {
-        resp = _cmd.getc();           // read response
-        resp = resp << 8 + _cmd.getc();
+    // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);              
+    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+        // read response
+        resp = serReadByte(_cmd); //resp = _cmd.getc();           
+        resp = resp << 8 + serReadByte(_cmd); //resp = resp << 8 + _cmd.getc();
     }
     return resp;
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: write_byte(int value)
 {
     char command[3]= "";
@@ -115,6 +127,7 @@ void uLCD_4DGL :: write_byte(int value)
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: write_word(int value)
 {
     char command[3]= "";
@@ -127,6 +140,7 @@ void uLCD_4DGL :: write_word(int value)
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: flush_media()
 {
     char command[1] = "";
@@ -135,6 +149,7 @@ void uLCD_4DGL :: flush_media()
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: display_image(int x, int y)
 {
     char command[6]= "";
@@ -149,6 +164,7 @@ void uLCD_4DGL :: display_image(int x, int y)
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: display_video(int x, int y)
 {
     char command[5]= "";
@@ -163,6 +179,7 @@ void uLCD_4DGL :: display_video(int x, int y)
 }
 
 //******************************************************************************************************
+// No update needed
 void uLCD_4DGL :: display_frame(int x, int y, int w)
 {
     char command[7]= "";

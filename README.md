@@ -101,15 +101,15 @@ public :
     void putc(char);
     void puts(char *);
     //Media Commands
-    TODO : int media_init();
+    int media_init(); // works
     TODO : void set_byte_address(int, int);
-    TODO : void set_sector_address(int, int);
+    void set_sector_address(int, int); // works
     TODO : char read_byte();
     TODO : int  read_word();
     TODO : void write_byte(int);
     TODO : void write_word(int);
     TODO : void flush_media();
-    TODO : void display_image(int, int);
+    void display_image(int, int); // works
     TODO : void display_video(int, int);
     TODO : void display_frame(int, int, int);
 protected :
