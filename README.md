@@ -50,9 +50,9 @@ wait_us(500);               |      time_sleep(0.0005);
 _cmd.readable()             |      serDataAvailable(_cmd) != 0
 
 ## TODO: functions that have not been tested / have issues
-`printf()`: this uses `getc()`, which works. but I don't know how to make `printf()` work. Class `uLCD_4DGL` inherits from `public Stream` class. I commented it out because of some errors. Need to uncomment it to use `printf()`.
+`printf()`: this uses `getc()`. `getc()` works it is hard to make `printf()` work, since Class `uLCD_4DGL` inherits from `public Stream` class, which is a mbed os class. I commented it out because `Stream` class does not exist in Pi.
 
-`set_font()`, `set_font_size()` and `text_string()`: FONT_7X8 is the only built-in font. Hence the first two do not seem to work. `text_string()` works except the `font` argument.
+`set_font()`, `set_font_size()` and `text_string()`: FONT_7X8 is the only built-in font. Hence the first two do not work with other font size. Use `text_width()` and `text_height()` instead. `text_string()` works if the `font` argument is FONT_7X8, since it calls `set_font()` within.
 
 `read_pixel()`: does not return the right value. always respond with `0xa9a9`.
 
