@@ -38,7 +38,7 @@ int uLCD_4DGL :: media_init()
     writeCOMMAND(command, 1);
     // wait for screen answer
     while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);
-    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+    if (serDataAvailable(_cmd) != 0) { //if (_cmd.readable()) {
         // read response
         resp = serReadByte(_cmd); //resp = _cmd.getc();           
         resp = resp << 8 + serReadByte(_cmd); //resp = resp << 8 + _cmd.getc();
@@ -87,7 +87,7 @@ char uLCD_4DGL :: read_byte()
     writeCOMMAND(command, 1);
     // wait for screen answer
     while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);              
-    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+    if (serDataAvailable(_cmd) > 0) { //if (_cmd.readable()) {
         // read response
         resp = serReadByte(_cmd); //resp = _cmd.getc();           
         resp = serReadByte(_cmd); //resp = _cmd.getc();
@@ -105,7 +105,7 @@ int  uLCD_4DGL :: read_word()
     writeCOMMAND(command, 1);
     // wait for screen answer
     while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO*0.001); //while (!_cmd.readable()) wait_ms(TEMPO);              
-    if (serDataAvailable != 0) { //if (_cmd.readable()) {
+    if (serDataAvailable(_cmd) > 0) { //if (_cmd.readable()) {
         // read response
         resp = serReadByte(_cmd); //resp = _cmd.getc();           
         resp = resp << 8 + serReadByte(_cmd); //resp = resp << 8 + _cmd.getc();
