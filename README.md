@@ -67,12 +67,12 @@ public :
     ~uLCD_4DGL();
     void cls();
     void reset();
-    TODO : void baudrate(int speed); // Only support a handful of speed options
+    void baudrate(int speed); // Only support a handful of speed options
     void background_color(int color); // need to cls() to take effect
     void textbackground_color(int color);
     TODO : void display_control(char mode);
     TODO : void display_power(char mode);
-    TODO : void set_volume(char value);
+    void set_volume(char value); // not supported. no internal speaker for testing.
     // Graphics Commands
     void circle(int x , int y , int radius, int color);
     void filled_circle(int x , int y , int radius, int color);
@@ -83,7 +83,7 @@ public :
     void pixel(int, int, int);
     TODO : int  read_pixel(int, int);
     TODO : void pen_size(char);
-    TODO : void BLIT(int x, int y, int w, int h, int *colors);
+    void BLIT(int x, int y, int w, int h, int *colors);
     // Text Commands
     TODO : void set_font(char);
     TODO : void set_font_size(char width, char height);  
