@@ -120,23 +120,23 @@
 #define BAUD_2400    1249
 #define BAUD_4800    624
 #define BAUD_9600    312
-#define BAUD_14400   207
+//#define BAUD_14400   207 // not supported by Pi serial
 #define BAUD_19200   155
-#define BAUD_31250   95
+//#define BAUD_31250   95  // not supported by Pi serial
 #define BAUD_38400   77
-#define BAUD_56000   53
+//#define BAUD_56000   53  // not supported by Pi serial
 #define BAUD_57600   51
 #define BAUD_115200  25
-#define BAUD_128000  22
-#define BAUD_256000  11
-#define BAUD_300000  10
-#define BAUD_375000  8
-#define BAUD_500000  6
-#define BAUD_600000  4
-#define BAUD_750000  3
-#define BAUD_1000000 2
-#define BAUD_1500000 1
-#define BAUD_3000000 0
+//#define BAUD_128000  22  // not supported by Pi serial
+//#define BAUD_256000  11  // not supported by Pi serial
+//#define BAUD_300000  10  // not supported by Pi serial
+//#define BAUD_375000  8   // not supported by Pi serial
+//#define BAUD_500000  6   // not supported by Pi serial
+//#define BAUD_600000  4   // not supported by Pi serial
+//#define BAUD_750000  3   // not supported by Pi serial
+//#define BAUD_1000000 2   // not supported by Pi serial
+//#define BAUD_1500000 1   // not supported by Pi serial
+//#define BAUD_3000000 0   // not supported by Pi serial
 
 // Defined Colors
 #define WHITE 0xFFFFFF

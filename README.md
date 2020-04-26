@@ -67,7 +67,7 @@ public :
     ~uLCD_4DGL();
     void cls();
     void reset();
-    TODO : void baudrate(int speed);
+    TODO : void baudrate(int speed); // Only support a handful of speed options
     void background_color(int color); // need to cls() to take effect
     void textbackground_color(int color);
     TODO : void display_control(char mode);

@@ -215,7 +215,8 @@ int uLCD_4DGL :: version()    // get API version
 
 //**************************************************************************
 void uLCD_4DGL :: baudrate(int speed)    // set screen baud rate
-{
+{   //The baud rate for pi's serial must be one of 50, 75, 110, 134, 150, 200, 300, 600, 
+    //1200, 1800, 2400, 4800, 9600, 19200, 38400, 57600, 115200, or 230400
     char command[3]= "";
     writeBYTE(0x00);
     command[0] = BAUDRATE;
@@ -243,27 +244,28 @@ void uLCD_4DGL :: baudrate(int speed)    // set screen baud rate
         case 9600 :
             newbaud = BAUD_9600;
             break;
-        case 14400 :
-            newbaud = BAUD_14400;
-            break;
+        //case 14400 : // not supported by Pi serial
+        //    newbaud = BAUD_14400;
+        //    break;
         case 19200 :
             newbaud = BAUD_19200;
             break;
-        case 31250 :
-            newbaud = BAUD_31250;
-            break;
+        //case 31250 : // not supported by Pi serial
+        //    newbaud = BAUD_31250;
+        //    break;
         case 38400 :
             newbaud = BAUD_38400;
             break;
-        case 56000 :
-            newbaud = BAUD_56000;
-            break;
+        // case 56000 : // not supported by Pi serial
+        //     newbaud = BAUD_56000;
+        //     break;
         case 57600 :
             newbaud = BAUD_57600;
             break;
         case 115200 :
             newbaud = BAUD_115200;
             break;
+        /*
         case 128000 :
             newbaud = BAUD_128000;
             break;
@@ -297,6 +299,7 @@ void uLCD_4DGL :: baudrate(int speed)    // set screen baud rate
         case 3000000 :
             newbaud = BAUD_3000000;
             break;
+        */
         default   :
             newbaud = BAUD_9600;
             speed = 9600;

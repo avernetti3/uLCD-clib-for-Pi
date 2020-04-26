@@ -37,10 +37,11 @@ int main(int argc, char *argv[])
     
     uLCD_4DGL uLCD(RST); // serial tx, serial rx, reset pin;
     //uLCD.printf("\nHello uLCD World\n");
-    uLCD.background_color(GREEN); // TODO: background_color not working !!!
-    uLCD.filled_circle(60, 60, 20, RED);
-    uLCD.putc('A');
-    uLCD.putc('B');
+    uLCD.baudrate(115200); //jack up baud rate to max for fast display
+    //if demo hangs here - try lower baud rates
+    //
+    uLCD.background_color(BLUE);
+    uLCD.cls();
     time_sleep(5.0);
 
     return 0;
