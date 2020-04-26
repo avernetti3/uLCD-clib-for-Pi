@@ -4,6 +4,7 @@
 #include <signal.h> // needed to clean up CTL C abort
 #include <sys/types.h>
 #include <unistd.h>
+#include <string.h>
 
 #include "uLCD_4DGL.h"
 
@@ -51,14 +52,49 @@ int main(int argc, char *argv[])
     uLCD.set_sector_address(0x0020, 0x4000); // You will have to change these values based where RAW data is stored (check .GC file)
     uLCD.display_image(0,0);
     time_sleep(5.0);
-    uLCD.reset();
-
-    // Displaying video from uSD test
-    uLCD.media_init();
-    uLCD.set_sector_address(0x0000, 0x0000); // You will have to change these values based where RAW data is stored (check .GC file)
-    uLCD.display_video(0,0);
+    // Test media flush
+    // uLCD.flush_media(); // Not sure what this does?
+    // time_sleep(5.0);
+    uLCD.background_color(BLUE);
+    uLCD.cls();
     time_sleep(5.0);
-    uLCD.reset();
 
+    // NOT WORKING
+    // Test writing and reading from uSD (doesn't work)
+    //.... assumes uLCD already setup as in earlier demo code
+    uLCD.cls();
+    //uLCD.media_init(); //init SD card for use
+    char datastring[80]="";
+    uLCD.set_sector_address(0,1000); //go to an unused area on SD card
+    //Write Hello SD World to SD card
+    sprintf(datastring,"%s","Hello SD World");
+    //uLCD.printf("\n\nWriting to SD:\n\n");
+    for (int i=0; i<strlen(datastring); i++) {
+        uLCD.write_byte(datastring[i]); //write a byte to SD card
+        uLCD.putc(datastring[i]); //also send byte to display
+    }
+    uLCD.flush_media(); //flush out (write) entire 512 byte sector with 0xFF fills
+    //Now Read back bytes from SD card
+    uLCD.set_sector_address(0,1000); //reset to start of sector
+    char readchar =' ';
+    //uLCD.printf("\n\nReading SD: \n\n");
+    while (readchar != '\xFF') { //0xFF is padding character at end of bytes
+        readchar = uLCD.read_byte();  //read a byte from SD card
+        uLCD.putc(readchar); //also send byte to display
+    }
+
+    // // Still need to put video on uSD to be able to test
+    // // Displaying video from uSD test
+    // uLCD.media_init();
+    // uLCD.set_sector_address(0x0000, 0x0000); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.display_video(0,0);
+    // time_sleep(5.0);
+    // uLCD.reset();
+
+    uLCD.background_color(GREEN);
+    uLCD.cls();
+    // Identify the end of the program is successfully reached
+    time_sleep(3.0);
+    uLCD.reset();
     return 0;
 }

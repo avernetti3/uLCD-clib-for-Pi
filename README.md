@@ -108,7 +108,7 @@ public :
     TODO : int  read_word();
     TODO : void write_byte(int);
     TODO : void write_word(int);
-    TODO : void flush_media();
+    TODO : void flush_media(); // Not sure what this does, exactly
     void display_image(int, int); // works
     TODO : void display_video(int, int);
     TODO : void display_frame(int, int, int);
