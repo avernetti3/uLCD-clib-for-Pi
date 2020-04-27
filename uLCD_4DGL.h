@@ -35,7 +35,7 @@
 #endif
 
 // Common WAIT value in milliseconds between commands
-#define TEMPO 0
+#define TEMPO 10 // 10 makes serial read correctly
 
 // 4DGL SGE Function values for Goldelox Processor
 #define CLS          '\xD7'

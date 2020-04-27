@@ -101,15 +101,15 @@ public :
     void putc(char);
     void puts(char *);
     //Media Commands
-    TODO : int media_init();
-    TODO : void set_byte_address(int, int);
-    TODO : void set_sector_address(int, int);
-    TODO : char read_byte();
-    TODO : int  read_word();
-    TODO : void write_byte(int);
-    TODO : void write_word(int);
-    TODO : void flush_media();
-    TODO : void display_image(int, int);
+    int media_init();
+    void set_byte_address(int, int); // Offset number of bytes from beginning
+    void set_sector_address(int, int); // Offset number of sectors (512 bytes) from beginning 
+    char read_byte();
+    int  read_word();
+    void write_byte(int);
+    void write_word(int);
+    void flush_media(); // Needed after a write to SD card, pads the rest of the sector with 0xFF
+    void display_image(int, int);
     TODO : void display_video(int, int);
     TODO : void display_frame(int, int, int);
 protected :
