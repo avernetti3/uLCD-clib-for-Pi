@@ -71,7 +71,7 @@ public :
     void background_color(int color); // need to cls() to take effect
     void textbackground_color(int color);
     void display_control(char mode); // change display orientation
-    TODO : void display_power(char mode);
+    void display_power(char mode); //uLCD-144-G2 does not support Contrast ‘levels’, values from 1-15 turn the display ‘On’, 0 turn the Display ‘Off’
     void set_volume(char value); // not supported. no internal speaker for testing.
     // Graphics Commands
     void circle(int x , int y , int radius, int color);
