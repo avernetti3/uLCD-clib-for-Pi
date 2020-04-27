@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     atexit(exit_handler);  // exit handler cleanup 
 
     //IO code starts here
-    
+    /*
     int img[330] = {
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3681288, 3681288, 3681288, 0, 0, 0, 0, 3681288, 3681288, 3681288, 0, 0, 
         0, 0, 0, 0, 0, 0, 0, 0, 0, 3681288, 3681288, 15244328, 3681288, 3681288, 0, 0, 3681288, 3681288, 15244328, 3681288, 0, 0, 
@@ -51,12 +51,10 @@ int main(int argc, char *argv[])
         0, 0, 0, 0, 0, 3681288, 3681288, 15244328, 15244328, 15261912, 15261912, 15261912, 15244328, 15261912, 15261912, 15244328, 15244328, 15244328, 3681288, 0, 0, 0, 
         0, 0, 0, 0, 0, 3681288, 3681288, 15261912, 15244328, 15244328, 15261912, 15244328, 15261912, 15244328, 15244328, 15261912, 15244328, 3681288, 3681288, 0, 0, 0, 
         0, 0, 0, 0, 0, 0, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 3681288, 0, 0, 0, 0
-    };
+    };*/
 
     uLCD_4DGL uLCD(RST); // serial tx, serial rx, reset pin;
-    //uLCD.printf("\nHello uLCD World\n");
-    uLCD.baudrate(115200); //jack up baud rate to max for fast display
-    //if demo hangs here - try lower baud rates
+    //uLCD.baudrate(115200); //jack up baud rate to max for fast display
     
     uLCD.background_color(BLACK);
     uLCD.cls();
@@ -64,8 +62,9 @@ int main(int argc, char *argv[])
     //uLCD.triangle(120, 100, 40, 40, 10, 100, 0x0000FF);
     //uLCD.line(0, 0, 80, 60, 0xFF0000);
     //uLCD.filled_rectangle(50, 50, 100, 90, 0x00FF00);
-
-    uLCD.BLIT(10, 10, 22, 15, img);
+    char s[10] = "Hello";
+    uLCD.puts(s);
+    //uLCD.BLIT(10, 10, 22, 15, img);
 
     time_sleep(5.0);
 

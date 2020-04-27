@@ -70,7 +70,7 @@ public :
     void baudrate(int speed); // Only support a handful of speed options
     void background_color(int color); // need to cls() to take effect
     void textbackground_color(int color);
-    TODO : void display_control(char mode);
+    void display_control(char mode); // change display orientation
     TODO : void display_power(char mode);
     void set_volume(char value); // not supported. no internal speaker for testing.
     // Graphics Commands

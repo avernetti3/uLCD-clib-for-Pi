@@ -409,7 +409,7 @@ void uLCD_4DGL :: display_control(char mode)     // set screen mode to value
     command[1] = 0;
     command[2] = mode;
 
-    if (mode ==  ORIENTATION) {
+    //if (mode ==  ORIENTATION) {
         switch (mode) {
             case LANDSCAPE :
                 current_orientation = IS_LANDSCAPE;
@@ -424,7 +424,7 @@ void uLCD_4DGL :: display_control(char mode)     // set screen mode to value
                 current_orientation = IS_PORTRAIT;
                 break;
         }
-    }
+    //}
     writeCOMMAND(command, 3);
     set_font(current_font);
 }
