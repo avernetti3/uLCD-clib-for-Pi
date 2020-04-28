@@ -58,12 +58,58 @@ int main(int argc, char *argv[])
     
     uLCD.background_color(BLACK);
     uLCD.cls();
-    uLCD.filled_circle(60, 50, 30, 0xFF00FF);
-    //uLCD.triangle(120, 100, 40, 40, 10, 100, 0x0000FF);
-    //uLCD.line(0, 0, 80, 60, 0xFF0000);
+
+    uLCD.pen_size(SOLID);
+    uLCD.circle(60, 50, 30, 0xFF0000);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(WIREFRAME);
+    uLCD.circle(60, 50, 30, 0x00FF00);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(SOLID);
+    uLCD.filled_circle(60, 50, 30, 0xFF0000);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(WIREFRAME);
+    uLCD.filled_circle(60, 50, 30, 0x00FF00);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(SOLID);
+    uLCD.triangle(120, 100, 40, 40, 10, 100, 0xFF0000);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(WIREFRAME);
+    uLCD.triangle(120, 100, 40, 40, 10, 100, 0x00FF00);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(SOLID);
+    uLCD.filled_rectangle(50, 50, 100, 90, 0xFF0000);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(WIREFRAME);
+    uLCD.filled_rectangle(50, 50, 100, 90, 0x00FF00);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(SOLID);
+    uLCD.rectangle(50, 50, 100, 90, 0xFF0000);
+    time_sleep(3.0);
+    uLCD.cls();
+
+    uLCD.pen_size(WIREFRAME);
+    uLCD.rectangle(50, 50, 100, 90, 0x00FF00);
+
+    
     //uLCD.filled_rectangle(50, 50, 100, 90, 0x00FF00);
-    char s[10] = "Hello";
-    uLCD.puts(s);
+    
     //uLCD.BLIT(10, 10, 22, 15, img);
 
     time_sleep(5.0);

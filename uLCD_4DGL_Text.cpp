@@ -156,7 +156,7 @@ void uLCD_4DGL :: text_underline(char mode)     // set text mode
 }
 
 //****************************************************************************************************
-void uLCD_4DGL :: text_width(char width)     // set text width
+void uLCD_4DGL :: text_width(char width)     // set text width multiplier between 1 and 16
 {
     char command[3]= "";
 
@@ -169,7 +169,7 @@ void uLCD_4DGL :: text_width(char width)     // set text width
 }
 
 //****************************************************************************************************
-void uLCD_4DGL :: text_height(char height)     // set text height
+void uLCD_4DGL :: text_height(char height)     // set text height multiplier between 1 and 16
 {
     char command[3]= "";
 
