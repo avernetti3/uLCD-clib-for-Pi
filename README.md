@@ -13,9 +13,11 @@ Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 - uLCD-144-G2 128 by 128 Smart Color LCD
 
 ![Raspberry Pi pinout](GPIO-Pinout-Diagram-2.png)
+
 Raspberry Pi 40-pin header. (source: https://www.raspberrypi.org/documentation/usage/gpio/)
 
 ![ULCD-144-G2](ulcd-144-g2.png)
+
 ULCD-144-G2 LCD. (source: https://4dsystems.com.au/ulcd-144-g2)
 
 ## Schematics
