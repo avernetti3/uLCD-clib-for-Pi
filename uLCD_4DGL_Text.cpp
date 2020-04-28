@@ -335,7 +335,6 @@ void uLCD_4DGL :: putc(char c)      // place char at current cursor position
 //****************************************************************************************************
 void uLCD_4DGL :: puts(char *s)     // place string at current cursor position
 {
-
     text_string(s, current_col, current_row, current_font, current_color);
 
     current_col += strlen(s);
