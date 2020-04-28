@@ -125,8 +125,8 @@ public :
     void write_word(int);
     void flush_media(); // Needed after a write to SD card, pads the rest of the sector with 0xFF
     void display_image(int, int);
-    TODO : void display_video(int, int);
-    TODO : void display_frame(int, int, int);
+    void display_video(int, int);
+    void display_frame(int, int, int); // Displays frame of a video, last int is frame number
 protected :
     //used by printf
     virtual int _putc(int c);

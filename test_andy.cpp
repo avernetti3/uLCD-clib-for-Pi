@@ -51,16 +51,13 @@ int main(int argc, char *argv[])
     // uLCD.reset();
 
 
-    // // Displaying image from uSD test (WORKS!)
+    // Displaying image from uSD test (WORKS!)
     // uLCD.background_color(BLACK);
     // uLCD.cls();
     // uLCD.media_init();
-    // uLCD.set_sector_address(0x0020, 0x4000); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.set_sector_address(0x0020, 0x4100); // You will have to change these values based where RAW data is stored (check .GC file)
     // uLCD.display_image(0,0);
     // time_sleep(5.0);
-    // // Test media flush
-    // // uLCD.flush_media();
-    // // time_sleep(5.0);
     // uLCD.background_color(BLUE);
     // uLCD.cls();
     // time_sleep(5.0);
@@ -112,16 +109,27 @@ int main(int argc, char *argv[])
     // time_sleep(5.0);
 
 
-    TODO : // Still need to put video on uSD to be able to test 
-    // // Displaying video from uSD test
+    // // Displaying video from uSD test (WORKS!)
     // uLCD.media_init();
-    // uLCD.set_sector_address(0x0000, 0x0000); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.set_sector_address(0x0020, 0x4500); // You will have to change these values based where RAW data is stored (check .GC file)
     // uLCD.display_video(0,0);
-    // time_sleep(5.0);
-    // uLCD.reset();
+    // uLCD.set_sector_address(0x0020, 0x4500); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.display_video(0,0);
+    // uLCD.set_sector_address(0x0020, 0x4500); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.display_video(0,0);
+    // uLCD.set_sector_address(0x0020, 0x4500); // You will have to change these values based where RAW data is stored (check .GC file)
+    // uLCD.display_video(0,0);
 
-    TODO: // Test display frame
 
+    // Test display frame (WORKS!)
+    // uLCD.media_init();
+    // uLCD.set_sector_address(0x0020, 0x4500);
+    // uLCD.display_frame(0,0,1);
+    // time_sleep(2.0);
+    // uLCD.display_frame(0,0,5);
+    // time_sleep(2.0);
+    // uLCD.display_frame(0,0,10);
+    // time_sleep(2.0);
 
 
     // End of program check
