@@ -54,8 +54,6 @@ _cmd.readable()             |      serDataAvailable(_cmd) != 0
 
 `set_font()`, `set_font_size()` and `text_string()`: FONT_7X8 is the only built-in font. Hence the first two do not work with other font size. Use `text_width()` and `text_height()` instead. `text_string()` works if the `font` argument is FONT_7X8, since it calls `set_font()` within.
 
-`read_pixel()`: does not return the right value. always respond with `0xa9a9`.
-
 `pen_size()`: this function seems to hang the program entirely.
 
 ## Working Functions
@@ -81,7 +79,7 @@ public :
     void rectangle(int, int, int, int, int);
     void filled_rectangle(int, int, int, int, int);
     void pixel(int, int, int);
-    TODO : int  read_pixel(int, int);
+    int  read_pixel(int, int); // read 16-bit color value
     TODO : void pen_size(char);
     void BLIT(int x, int y, int w, int h, int *colors);
     // Text Commands

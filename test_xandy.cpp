@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
     
     uLCD.background_color(BLACK);
     uLCD.cls();
-    //uLCD.filled_circle(60, 50, 30, 0xFF00FF);
+    uLCD.filled_circle(60, 50, 30, 0xFF00FF);
     //uLCD.triangle(120, 100, 40, 40, 10, 100, 0x0000FF);
     //uLCD.line(0, 0, 80, 60, 0xFF0000);
     //uLCD.filled_rectangle(50, 50, 100, 90, 0x00FF00);

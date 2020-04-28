@@ -283,9 +283,9 @@ int uLCD_4DGL :: read_pixel(int x, int y)   // read screen info and populate dat
         writeBYTE(command[i]);
     }
 
-    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000);    // wait a bit for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/10);    // wait a bit for screen answer
 
-    while ( resp < (int)(ARRAY_SIZE(response))) {   //read ack and 16-bit color response
+    while ((serDataAvailable(_cmd) != 0) && resp < (int)(ARRAY_SIZE(response))) {   //read ack and 16-bit color response
         temp = serReadByte(_cmd);
         response[resp++] = (char)temp;
     }
