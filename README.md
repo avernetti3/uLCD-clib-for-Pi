@@ -75,7 +75,7 @@ Then run in command line: `sudo ./demo_text`
 
 ## Working Functions
 ```c++
-class uLCD_4DGL // TODO: public Stream
+class uLCD_4DGL 
 {
 public :
     uLCD_4DGL(unsigned rst);
