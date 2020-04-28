@@ -22,13 +22,13 @@ ULCD-144-G2 LCD. (source: https://4dsystems.com.au/ulcd-144-g2)
 ![schematic](schematic.png)
 
 ## The Raspberry Pi UARTs 
-(https://www.raspberrypi.org/documentation/configuration/uart.md)
-
 By default, on Raspberry Pis equipped with the wireless/Bluetooth module (Raspberry Pi 3 and Raspberry Pi Zero W), the PL011 UART is connected to the Bluetooth module, while the mini UART is used as the primary UART and will have a Linux console on it. On all other models, the PL011 is used as the primary UART.
 
 In Linux device terms, by default, /dev/ttyS0 refers to the mini UART, and /dev/ttyAMA0 refers to the PL011. The primary UART is the one assigned to the Linux console, which depends on the Raspberry Pi model as described above. There are also symlinks: /dev/serial0, which always refers to the primary UART (if enabled), and /dev/serial1, which similarly always refers to the secondary UART (if enabled).
 
 By default, the UART transmit and receive pins are on GPIO 14 and GPIO 15 respectively, which are pins 8 and 10 on the GPIO header.
+
+(source: https://www.raspberrypi.org/documentation/configuration/uart.md)
 
 ## How to use UART output on GPIO
 We need to enable Serial Port and disable Serial Console. You can do this via either GUI or command line.
