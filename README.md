@@ -15,11 +15,11 @@ Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 ![Raspberry Pi pinout](GPIO-Pinout-Diagram-2.png)
 Raspberry Pi 40-pin header. (source: https://www.raspberrypi.org/documentation/usage/gpio/)
 
-![ULCD-144-G2](ulcd-144-g2_front1.png)![](ulcd-144-g2-back_web.png)
-
+![ULCD-144-G2](ulcd-144-g2.png)
 ULCD-144-G2 LCD. (source: https://4dsystems.com.au/ulcd-144-g2)
 
 ## Schematics
+![schematic](schematic.png)
 
 ## The Raspberry Pi UARTs 
 (https://www.raspberrypi.org/documentation/configuration/uart.md)
