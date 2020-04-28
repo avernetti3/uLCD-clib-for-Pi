@@ -120,8 +120,8 @@ protected :
     void writeBYTEfast   (char);
     int  writeCOMMAND(char *, int);
     int  writeCOMMANDnull(char *, int);
-    TODO : int  readVERSION (char *, int);
-    TODO : int  getSTATUS   (char *, int);
-    TODO : int  version     (void);
+    int  readVERSION (char *, int); // called by version()
+    int  getSTATUS   (char *, int, char *, int); // can be used to get display model
+    int  version     (void); // get SPE version. return 0 for correct return.
 };
 ```

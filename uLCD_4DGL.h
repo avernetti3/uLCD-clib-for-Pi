@@ -337,8 +337,8 @@ protected :
     int  writeCOMMAND(char *, int);
     int  writeCOMMANDnull(char *, int);
     int  readVERSION (char *, int);
-    int  getSTATUS   (char *, int);
-    int  version     (void);
+    int  getSTATUS   (char *, int, char *, int);
+    int  version     (void); // get SPE version. return 0 for correct return.
 };
 
 typedef unsigned char BYTE;

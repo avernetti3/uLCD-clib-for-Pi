@@ -204,7 +204,7 @@ void uLCD_4DGL :: cls()    // clear screen
 }
 
 //**************************************************************************
-int uLCD_4DGL :: version()    // get API version
+int uLCD_4DGL :: version()    // Populate revision with SPE version. return 0 for correct return.
 {
 
     char command[2] = "";
@@ -348,19 +348,19 @@ int uLCD_4DGL :: readVERSION(char *command, int number)   // read screen info an
 
     for (i = 0; i < number; i++) writeBYTE(command[i]);    // send all chars to serial port
 
-    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000); //wait_ms(TEMPO);               // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/10); //wait_ms(TEMPO);               // wait for screen answer
 
     while ((serDataAvailable(_cmd) != 0) && resp < (int) (ARRAY_SIZE(response))) {
         temp = serReadByte(_cmd);
         response[resp++] = (char)temp;
     }
-    switch (resp) {
-        case 2 :                                           // if OK populate data and return 1
-            revision  = (response[0]<<8) + response[1];
-            resp      = 1;
+    switch (response[0]) {
+        case ACK:                                           // if OK populate data and return 0
+            revision  = (response[1]<<8) + response[2];
+            resp      = 0;
             break;
         default :
-            resp =  0;                                     // else return 0
+            resp =  -1;                                     // else return -1
             break;
     }
     return resp;
@@ -451,7 +451,18 @@ void uLCD_4DGL :: set_volume(char value)     // set sound volume to value
 
 
 //******************************************************************************************************
-int uLCD_4DGL :: getSTATUS(char *command, int number)   // read screen info and populate data
+// can be used to get LCD model. return number of bytes received. -1 if error return.
+/**
+Example:
+* @code
+* char command[2] = {0x00, 0x07};
+* char response[20] = "";
+* getSTATUS(command, 2, response, 20);
+* printf("%s\n", &(response[3]));
+* @endcode
+*/
+
+int uLCD_4DGL :: getSTATUS(char *command, int cmd_number, char *response, int max_resp_number)   // read screen info and populate data
 {
 
 #if DEBUGMODE
@@ -460,24 +471,22 @@ int uLCD_4DGL :: getSTATUS(char *command, int number)   // read screen info and 
 #endif
 
     int i, temp = 0, resp = 0;
-    char response[5] = "";
 
     freeBUFFER();
 
-    for (i = 0; i < number; i++) writeBYTE(command[i]);    // send all chars to serial port
+    for (i = 0; i < cmd_number; i++) writeBYTE(command[i]);    // send all chars to serial port
 
-    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/1000);    // wait for screen answer
+    while (serDataAvailable(_cmd) == 0) time_sleep(TEMPO/10);    // wait for screen answer
 
-    while ((serDataAvailable(_cmd) != 0) && resp < (int) (ARRAY_SIZE(response))) {
+    while ((serDataAvailable(_cmd) != 0) && resp < max_resp_number) {
         temp = serReadByte(_cmd);
         response[resp++] = (char)temp;
     }
-    switch (resp) {
-        case 4 :
-            resp = (int)response[1];         // if OK populate data
+    switch (response[0]) {
+        case ACK :
             break;
         default :
-            resp =  -1;                      // else return   0
+            resp =  -1;                      // else return   -1
             break;
     }
 
