@@ -8,6 +8,16 @@ Created by:
 Created for:
 Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 
+## Parts list
+- Raspberry Pi Zero W / 3
+- uLCD-144-G2 128 by 128 Smart Color LCD
+
+## Schematics
+![Raspberry Pi pinout]
+(GPIO-Pinout-Diagram-2.png)
+
+source: https://www.raspberrypi.org/documentation/usage/gpio/images/GPIO-Pinout-Diagram-2.png
+
 ## The Raspberry Pi UARTs 
 (https://www.raspberrypi.org/documentation/configuration/uart.md)
 
