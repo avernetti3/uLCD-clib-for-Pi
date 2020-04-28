@@ -62,7 +62,7 @@ GND         |       14 (GND)
 RST         |       12 (GPIO_18)
 
 ## Demo Program
-We have written 3 demo prorgams: demo_text.cpp, demo_graphics.cpp, demo_media.cpp.
+We have written 3 demo programs: demo_text.cpp, demo_graphics.cpp, demo_media.cpp.
 
 For example, to run the demo program for text, compile in command line: `g++ -Wall -pthread -o "demo_text" demo_text.cpp uLCD_4DGL_main.cpp uLCD_4DGL_Graphics.cpp uLCD_4DGL_Text.cpp -lpigpio`
 
