@@ -1,5 +1,5 @@
 # uLCD-144-G2 Color LCD c++ library for Raspberry Pi
-This is a project that port the uLCD C++ library from mbed to Raspberry Pi (Raspian).
+This is a project that ports the uLCD C++ library from mbed to Raspberry Pi (Raspian).
 
 Created by:
 <br>Andrew (Andy) Vernetti
