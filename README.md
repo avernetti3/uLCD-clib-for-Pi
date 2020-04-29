@@ -8,6 +8,9 @@ Created by:
 Created for:
 Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 
+Link to presentation:
+https://gtvault-my.sharepoint.com/:p:/g/personal/xliu692_gatech_edu/EZUG6LonL1lEtXxe1roh7rYBdf_xUQtChRn7HLR5sKzqLw?e=OXDKkN
+
 ## Parts list
 - Raspberry Pi Zero W / 3
 - uLCD-144-G2 128 by 128 Smart Color LCD
@@ -61,7 +64,20 @@ TX          |       10 (GPIO_15 / RXD)
 GND         |       14 (GND)
 RST         |       12 (GPIO_18)
 
-## Demo Program
+## Saving Images/Videos to SD Card
+
+In order to use the API functions to display images, videos, and to read/write data, an unformatted uSD card must be inserted into the uLCD.
+
+The easiest way to create an unformatted uSD card is to use the software IDE that is provided by the manufacturer of the LCD. This software is called Workshop4 and can be downloaded here: https://4dsystems.com.au/workshop4
+
+Once downloaded, run the software. It will prompt you to select the LCD screen you're using, then make a serial project for it.
+
+ Now we will prepare our SD card. In Workshop4, open the tool called RMPET (Removable Media Partition Edit Tool). Insert your desired uSD card into your computer, and select it as the drive to edit. If it has already been formatted, which chances are it has, you will have to delete the partition table. Then create a new partition table. I split my SD card with 1 GB of FAT16 and the remaining 3 GB I left unformatted. Then click create partition size, make sure the cluster size is set to max, 512, and then click format. Now you have a usable SD card.
+
+Loading images and videos onto your newly unformatted SD card is also done via Workshop4. This time, run the software and open the tool called Graphics Composer. Make sure the correct screen size is selected on the bottom right. Now click Add in the bottom left to select your desired image or video. Now click build. You will first have to save the .gcs file, then you will select 4DGL - uSD Raw in order to save the raw binary data onto the SD card. Make sure the correct drive is selected. Optionally, you can enter an offset if you want to save the data at a specific location, otherwise the software will save it as soon as it can in the unformatted partition. Now click OK and the tool will save the data. Before you exit, click the GC button at the top of the tool and take note of the location that the data is saved. This pair of hex numbers will be the two inputs to the display_image or display_video functions. Now you are ready to use the API!
+
+## Demo Program and Videos
+
 We have written 3 demo programs: demo_text.cpp, demo_graphics.cpp, demo_media.cpp.
 
 For example, to run the demo program for text, compile in command line: `g++ -Wall -pthread -o "demo_text" demo_text.cpp uLCD_4DGL_main.cpp uLCD_4DGL_Graphics.cpp uLCD_4DGL_Text.cpp -lpigpio`
@@ -71,6 +87,8 @@ Then run in command line: `sudo ./demo_text`
 demo_text demo video: https://www.youtube.com/watch?v=72G-MMXiyhI
 
 demo_graphics demo video: https://www.youtube.com/watch?v=awc3ZDoNaCo
+
+demo_media demo video: https://youtu.be/H60eHGhcXFQ 
 
 ## Notes
 `printf()`: this uses `getc()`. `getc()` works. It is hard to make `printf()` work, since Class `uLCD_4DGL` inherits from `public Stream` class, which is a mbed os class. I commented it out because `Stream` class does not exist in Pi. For just printing out a string, `puts()` works, but need to manually putting `putc('\n');` afterwards for newline.
@@ -128,7 +146,7 @@ public :
     void write_byte(int);
     void write_word(int);
     void flush_media(); // Needed after a write to SD card, pads the rest of the sector with 0xFF
-    void display_image(int, int);
+    void display_image(int, int); // Use hex values from .GC file to find where Workshop4 saved the data onto the SD
     void display_video(int, int);
     void display_frame(int, int, int); // Displays frame of a video, last int is frame number
 protected :
