@@ -9,7 +9,7 @@ Created for:
 Georgia Tech ECE4180-A Embedded Systems Design - Final Project
 
 Link to presentation:
-https://gtvault-my.sharepoint.com/:p:/g/personal/xliu692_gatech_edu/EZUG6LonL1lEtXxe1roh7rYBdf_xUQtChRn7HLR5sKzqLw?e=OXDKkN
+<br>https://gtvault-my.sharepoint.com/:p:/g/personal/xliu692_gatech_edu/EZUG6LonL1lEtXxe1roh7rYBdf_xUQtChRn7HLR5sKzqLw?e=OXDKkN
 
 ## Parts list
 - Raspberry Pi Zero W / 3
