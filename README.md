@@ -68,6 +68,10 @@ For example, to run the demo program for text, compile in command line: `g++ -Wa
 
 Then run in command line: `sudo ./demo_text`
 
+demo_text demo video: https://www.youtube.com/watch?v=72G-MMXiyhI
+
+demo_graphics demo video: https://www.youtube.com/watch?v=awc3ZDoNaCo
+
 ## Notes
 `printf()`: this uses `getc()`. `getc()` works. It is hard to make `printf()` work, since Class `uLCD_4DGL` inherits from `public Stream` class, which is a mbed os class. I commented it out because `Stream` class does not exist in Pi. For just printing out a string, `puts()` works, but need to manually putting `putc('\n');` afterwards for newline.
 
